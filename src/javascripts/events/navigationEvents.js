@@ -1,8 +1,8 @@
-import { showBooks } from '../components/books';
 import signOut from '../helpers/auth/signOut';
+import { showBooks } from '../components/books';
 import { getBooks } from '../helpers/data/bookData';
 import { showAuthors } from '../components/authors';
-import getAuthors from '../helpers/data/authorData';
+import { getAuthors } from '../helpers/data/authorData';
 
 // navigation events
 const navigationEvents = () => {

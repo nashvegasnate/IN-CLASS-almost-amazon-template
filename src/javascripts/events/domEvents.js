@@ -2,6 +2,8 @@ import addBookForm from '../components/forms/addBookForm';
 import deleteBook, { createBooks } from '../helpers/data/bookData';
 import { showBooks } from '../components/books';
 import addAuthorForm from '../components/forms/addAuthorForm';
+import { showAuthors } from '../components/authors';
+import { createAuthor } from '../helpers/data/authorData';
 // import { getAuthors, addAuthor } from '../helpers/data/authorData';
 
 // import firebaseConfig from '../helpers/auth/apiKeys';
@@ -53,6 +55,14 @@ const domEvents = () => {
       addAuthorForm();
     }
     // ADD CLICK EVENT FOR SUBMITTING FORM FOR ADDING AN AUTHOR
+    if (e.target.id.includes('submit-author')) {
+      e.preventDefault();
+      const authorObject = {
+        first_name: document.querySelector('#authorFirst').value,
+        last_name: document.querySelector('#authorLast').value,
+      };
+      createAuthor(authorObject).then((authorsArray) => showAuthors(authorsArray));
+    }
     // ADD CLICK EVENT FOR EDITING AN AUTHOR
   });
 };
