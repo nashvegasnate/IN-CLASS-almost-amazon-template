@@ -18,7 +18,7 @@ const deleteBook = (firebaseKey) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 // CREATE BOOK
-const createBooks = (bookObject) => new Promise((resolve, reject) => {
+const createBook = (bookObject) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/books.json`, bookObject)
     .then((response) => {
       const body = { firebaseKey: response.data.name };
@@ -31,5 +31,5 @@ const createBooks = (bookObject) => new Promise((resolve, reject) => {
 // UPDATE BOOK
 // SEARCH BOOKS
 
-export { getBooks, createBooks };
+export { getBooks, createBook };
 export default deleteBook;

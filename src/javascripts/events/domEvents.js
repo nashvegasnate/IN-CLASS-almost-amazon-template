@@ -1,5 +1,5 @@
 import addBookForm from '../components/forms/addBookForm';
-import deleteBook, { createBooks } from '../helpers/data/bookData';
+import deleteBook, { createBook } from '../helpers/data/bookData';
 import { showBooks } from '../components/books';
 import addAuthorForm from '../components/forms/addAuthorForm';
 import { showAuthors } from '../components/authors';
@@ -35,7 +35,7 @@ const domEvents = () => {
         author_id: document.querySelector('#author').value,
       };
 
-      createBooks(bookObject).then((booksArray) => showBooks(booksArray));
+      createBook(bookObject).then((booksArray) => showBooks(booksArray));
     }
 
     // CLICK EVENT FOR SHOWING MODAL FORM FOR ADDING A BOOK
