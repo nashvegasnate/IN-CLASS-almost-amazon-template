@@ -13,7 +13,7 @@ const getBooks = () => new Promise((resolve, reject) => {
 
 // DELETE BOOK
 const deleteBook = (firebaseKey) => new Promise((resolve, reject) => {
-  axios.delete(`$[dbUrl]/books/${firebaseKey}.json`)
+  axios.delete(`${dbUrl}/books/${firebaseKey}.json`)
     .then(() => getBooks().then((booksArray) => resolve(booksArray)))
     .catch((error) => reject(error));
 });
@@ -31,5 +31,4 @@ const createBook = (bookObject) => new Promise((resolve, reject) => {
 // UPDATE BOOK
 // SEARCH BOOKS
 
-export { getBooks, createBook };
-export default deleteBook;
+export { getBooks, createBook, deleteBook };
