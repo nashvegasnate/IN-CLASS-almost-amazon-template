@@ -1,14 +1,15 @@
+// import firebase from 'firebase/app';
+// import 'firebase/auth';
+import { emptyAuthors, showAuthors } from '../components/authors';
+import { emptyBooks, showBooks } from '../components/books';
 import signOut from '../helpers/auth/signOut';
-import { showBooks } from '../components/books';
-import { getBooks, getSaleBooks } from '../helpers/data/bookData';
-import { showAuthors } from '../components/authors';
 import { getAuthors } from '../helpers/data/authorData';
+import { getBooks, getSaleBooks } from '../helpers/data/bookData';
 
 // navigation events
-const navigationEvents = () => {
+const navigationEvents = (uid) => {
   // LOGOUT BUTTON
-  document.querySelector('#logout-button')
-    .addEventListener('click', signOut);
+  document.querySelector('#logout-button').addEventListener('click', signOut);
 
   // AUTHORS
   document.querySelector('#authors').addEventListener('click', () => {
@@ -17,13 +18,25 @@ const navigationEvents = () => {
 
   // BOOKS ON SALE
   document.querySelector('#sale-books').addEventListener('click', () => {
-    getSaleBooks().then((saleBooksArray) => showBooks(saleBooksArray));
+    getSaleBooks().then((saleBooksArray) => {
+      if (saleBooksArray.length) {
+        showBooks(saleBooksArray);
+      } else {
+        emptyBooks();
+      }
+    });
   });
 
   // ALL BOOKS
   document.querySelector('#all-books').addEventListener('click', () => {
-    // GET ALL BOOKS
-    getBooks().then((booksArray) => showBooks(booksArray));
+  // GET ALL BOOKS on click
+    getBooks(uid).then((booksArray) => {
+      if (booksArray.length) {
+        showBooks(booksArray);
+      } else {
+        emptyBooks();
+      }
+    });
   });
 
   // SEARCH
@@ -46,7 +59,14 @@ const navigationEvents = () => {
   // 2. Convert the response to an array because that is what the makeAuthors function is expecting
   // 3. If the array is empty because there are no authors, make sure to use the emptyAuthor function
   document.querySelector('#authors').addEventListener('click', () => {
-    getAuthors().then((authors) => showAuthors(authors));
+    getAuthors(uid).then((authorsArray) => {
+      if (authorsArray.length) {
+        showAuthors(authorsArray);
+      } else {
+        emptyAuthors();
+      }
+    });
   });
 };
+
 export default navigationEvents;

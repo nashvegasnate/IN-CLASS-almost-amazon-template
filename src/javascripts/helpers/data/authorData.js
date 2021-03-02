@@ -9,8 +9,8 @@ const getAuthors = () => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/authors.json`)
     .then((response) => {
       if (response.data) {
-        const authorArray = Object.values(response.data);
-        resolve(authorArray);
+        const authorsArray = Object.values(response.data);
+        resolve(authorsArray);
       } else {
         resolve([]);
       }
@@ -29,6 +29,12 @@ const createAuthor = (authorObject) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 // DELETE AUTHOR
+const deleteAuthor = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.delete(`${dbUrl}/authors/${firebaseKey}.json`)
+    .then(() => getAuthors().then((authorsArray) => resolve(authorsArray)))
+    .catch((error) => reject(error));
+});
+
 // UPDATE AUTHOR
 // SEARCH AUTHORS
-export { getAuthors, createAuthor };
+export { getAuthors, createAuthor, deleteAuthor };
