@@ -1,3 +1,5 @@
+// import selectAuthor from './selectAuthor';
+
 const addAuthorForm = () => {
   document.querySelector('#store').innerHTML = '';
   document.querySelector('#add-button').innerHTML = '';
@@ -13,6 +15,7 @@ const addAuthorForm = () => {
       </div>
       <button type="submit" id="submit-author" class="btn btn-primary">Submit Author</button>
     </form>`;
+  // selectAuthor();
 };
 
 export default addAuthorForm;
